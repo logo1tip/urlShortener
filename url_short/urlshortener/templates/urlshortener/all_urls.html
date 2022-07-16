@@ -1,0 +1,14 @@
+{% extends 'urlshortener/base.html' %} 
+
+{% block body %}
+<a href="{% url "logout" %}">Logout</a> 
+<title> All Urls </title>
+<body>
+    <ul>
+        {% for urls in object_list %}
+        <li class="contact">{{ urls }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+{% endblock body %}

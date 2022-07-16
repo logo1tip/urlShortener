@@ -4,6 +4,9 @@ from django.contrib import messages
 from .models import Shortener
 from .forms import ShortenerForm, UserRegisterForm, UserLoginForm
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import AbstractUser
+from django.views.generic import ListView
+from django.utils import timezone
 
 
 def register(request):
@@ -35,7 +38,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect("login")
+    return redirect("home")
 
 
 def home_view(request):
@@ -74,3 +77,23 @@ def redirect_url_view(request, shortened_part):
     except:
         raise Http404('Sorry this link is broken :(')
  
+
+# def all_urls(request):
+#     if request.user.is_authenticated:
+#         owner = request.user.username
+#         urls_list = Shortener.objects.all(user=owner)
+#         return render(request, "urlshortener/all_urls.html", {"urls_list": urls_list})
+#     else:
+#         return render(request, "home.html", {})    
+    
+    
+    # urls = Shortener.objects.all()
+    # context = {
+    #     "urls": urls,
+    #     "list_urls": Shortener.objects.get(id=1)
+    # }
+    # return render(request, "urlshortener/all_urls.html", context)
+
+class AllUrls(ListView):
+    model = Shortener
+    template_name = "urlshortener/all_urls.html"
