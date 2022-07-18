@@ -14,6 +14,7 @@ def create_random_code(chars=AVAIABLE_CHARS):
         [choice(chars) for _ in range(SIZE)]
     )
 
+
 def create_shortened_url(model_instance):
     random_code = create_random_code()
     model_class = model_instance.__class__

@@ -11,5 +11,5 @@ urlpatterns = [
     path('register/', register, name="register"),
     path('login/', user_login, name="login"),
     path('logout/', user_logout, name="logout"),
-    path('all_urls/', AllUrls.as_view(), name="all_urls"),
+    path('all_urls/', all_urls, name="all_urls"),
 ]

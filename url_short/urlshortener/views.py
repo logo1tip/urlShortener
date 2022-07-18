@@ -78,22 +78,12 @@ def redirect_url_view(request, shortened_part):
         raise Http404('Sorry this link is broken :(')
  
 
-# def all_urls(request):
-#     if request.user.is_authenticated:
-#         owner = request.user.username
-#         urls_list = Shortener.objects.all(user=owner)
-#         return render(request, "urlshortener/all_urls.html", {"urls_list": urls_list})
-#     else:
-#         return render(request, "home.html", {})    
+def all_urls(request):
     
-    
-    # urls = Shortener.objects.all()
-    # context = {
-    #     "urls": urls,
-    #     "list_urls": Shortener.objects.get(id=1)
-    # }
-    # return render(request, "urlshortener/all_urls.html", context)
+    if request.user.is_authenticated:
+        logged_in_owner = request.user
+        urls_list = Shortener.objects.all()
+        return render(request, "urlshortener/all_urls.html", {"urls_list": urls_list})
+    else:
+        return render(request, "urlshortener/home.html", {})    
 
-class AllUrls(ListView):
-    model = Shortener
-    template_name = "urlshortener/all_urls.html"
