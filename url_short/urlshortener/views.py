@@ -5,9 +5,6 @@ from .models import Shortener
 from .forms import ShortenerForm, UserRegisterForm, UserLoginForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
-from django.views.generic import ListView
-from django.utils import timezone
 
 
 def register(request):
@@ -81,9 +78,8 @@ def redirect_url_view(request, shortened_part):
 
 def all_urls(request):
     
-    if request.user.is_authenticated: 
-        user = User.objects.get(id=1)       
-        urls_list = Shortener.objects.filter(author=user)
+    if request.user.is_authenticated:     
+        urls_list = Shortener.objects.filter(owner=request.user)
         return render(request, "urlshortener/all_urls.html", {"urls_list": urls_list})
     else:
         return render(request, "urlshortener/home.html", {})    
