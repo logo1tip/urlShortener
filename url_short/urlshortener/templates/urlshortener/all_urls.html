@@ -7,7 +7,8 @@
     <ul>
        {% for item in urls_list %} 
             <div>
-                <p> {{ item.long_url}} </p> 
+                <p> {{ item.owner }} </p> 
+                <p> {{ item.long_url }} </p> 
                 <p> {{ item.short_url}} </p> 
             </div>
        {% endfor %}
