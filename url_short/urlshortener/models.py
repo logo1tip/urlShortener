@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Shortener(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     long_url = models.URLField()
     short_url = models.CharField(max_length=15, unique=True, blank=True)
 

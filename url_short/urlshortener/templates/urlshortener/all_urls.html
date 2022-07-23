@@ -5,10 +5,12 @@
 <body>
     <h2> Url List </h2>
     <ul>
-        {% for urls in urls_list %}
-        <li class="contact">{{ urls }}</li>
-        <hr>
-        {% endfor %}
+       {% for item in urls_list %} 
+            <div>
+                <p> {{ item.long_url}} </p> 
+                <p> {{ item.short_url}} </p> 
+            </div>
+       {% endfor %}
     </ul>
 </body>
 
